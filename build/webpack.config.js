@@ -9,7 +9,7 @@ module.exports={
         main:"./src/index.js"
     },
     output:{
-        path:path.resolve(__dirname,"../dist"),
+        path:path.resolve(__dirname,"../dist/static"),
         filename:'[name].js'
     },
     module:{
@@ -23,7 +23,7 @@ module.exports={
                 loader:'stylus-loader'
             },
             {
-                test:/\.js$/,
+                test:/\.(js|jsx)$/,
                 loader:'babel-loader',
                 exclude: /node_modules/
             }
@@ -32,7 +32,7 @@ module.exports={
     plugins:[
         new CleanWebpackPlugin(path.resolve(__dirname,"../dist")),
         new HtmlWebpackPlugin({
-            filename: 'index.html',
+            filename: path.join(path.resolve(__dirname,"../dist"),'index.html'),
             template: 'index.html',
             inject: true
           })
